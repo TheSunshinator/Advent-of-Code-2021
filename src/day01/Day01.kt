@@ -1,0 +1,26 @@
+package day01
+
+import readInput
+
+fun main() {
+    fun part1(input: List<String>) = input.getIncreaseCount()
+    fun part2(input: List<String>) = input.getIncreaseCount {
+        windowed(3) { (current, next, afterNext) -> current + next + afterNext }
+    }
+
+    val testInput = readInput("01", "test_input")
+    check(part1(testInput) == 7)
+    check(part2(testInput) == 5)
+
+    val input = readInput("01", "input")
+    println(part1(input))
+    println(part2(input))
+}
+
+inline fun List<String>.getIncreaseCount(group: Sequence<Int>.() -> Sequence<Int> = { this }): Int {
+    return asSequence()
+        .map { it.toInt() }
+        .group()
+        .zipWithNext()
+        .count { (previous, next) -> previous < next }
+}
