@@ -1,5 +1,6 @@
 package day01
 
+import io.kotest.matchers.shouldBe
 import readInput
 
 fun main() {
@@ -9,8 +10,8 @@ fun main() {
     }
 
     val testInput = readInput("01", "test_input")
-    check(part1(testInput) == 7)
-    check(part2(testInput) == 5)
+    part1(testInput) shouldBe 7
+    part2(testInput) shouldBe 5
 
     val input = readInput("01", "input")
     println(part1(input))

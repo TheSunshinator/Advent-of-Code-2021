@@ -1,5 +1,6 @@
 package day02
 
+import io.kotest.matchers.shouldBe
 import readInput
 
 typealias Movement = State.() -> State
@@ -9,8 +10,8 @@ fun main() {
     fun part2(input: List<String>) = computeEndState(input, ::toAimedMovement).answer
 
     val testInput = readInput("02", "test_input")
-    check(part1(testInput) == 150)
-    check(part2(testInput) == 900)
+    part1(testInput) shouldBe 150
+    part2(testInput) shouldBe 900
 
     val input = readInput("02", "input")
     println(part1(input))
