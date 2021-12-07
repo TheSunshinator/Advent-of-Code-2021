@@ -18,3 +18,5 @@ inline fun <T, U, V> Pair<T, U>.mapSecond(transform: (U) -> V) = first to transf
 data class Point(val x: Int, val y: Int)
 
 infix fun Int.iterateTo(other: Int) = if (this <= other) rangeTo(other) else downTo(other)
+
+fun parseIntSequence(input: List<String>) = input.first().splitToSequence(",").map(String::toInt)

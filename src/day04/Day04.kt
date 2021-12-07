@@ -2,6 +2,7 @@ package day04
 
 import arrow.core.identity
 import io.kotest.matchers.shouldBe
+import parseIntSequence
 import readInput
 
 typealias Winner = Pair<List<Int?>, Int>
@@ -28,7 +29,7 @@ fun selectWinner(input: List<String>, selector: Sequence<Winner>.() -> Winner): 
         .let(encryptSolution)
 }
 
-fun parse(input: List<String>) = parseGrids(input) to parseDrawnNumbers(input)
+fun parse(input: List<String>) = parseGrids(input) to parseIntSequence(input)
 
 val computeWinnerSequence: (Pair<List<Grid>, Sequence<Int>>) -> Sequence<Winner> = { (grids, numberSequence) ->
     sequence {
@@ -74,12 +75,6 @@ fun parseGrids(input: List<String>): List<Grid> {
                 .mapTo(mutableListOf<Int?>(), ::identity)
         }
         .toList()
-}
-
-fun parseDrawnNumbers(input: List<String>): Sequence<Int> {
-    return input.first()
-        .splitToSequence(",")
-        .map(String::toInt)
 }
 
 val numberRegex = "\\d+".toRegex()

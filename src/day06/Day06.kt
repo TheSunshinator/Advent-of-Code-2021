@@ -2,6 +2,7 @@ package day06
 
 import arrow.core.identity
 import io.kotest.matchers.shouldBe
+import parseIntSequence
 import readInput
 import java.util.LinkedList
 
@@ -20,7 +21,7 @@ fun main() {
 }
 
 fun computeSchool(input: List<String>, days: Int): Long {
-    return parse(input)
+    return parseIntSequence(input)
         .groupingBy(::identity)
         .eachCount()
         .createFishCountList()
@@ -28,7 +29,6 @@ fun computeSchool(input: List<String>, days: Int): Long {
         .sum()
 }
 
-fun parse(input: List<String>) = input.first().splitToSequence(",").map(String::toInt)
 inline fun <T, U> T.foldedBy(iterable: Iterable<U>, operation: (T, U) -> T): T = iterable.fold(this, operation)
 
 fun Map<Int, Int>.createFishCountList() = (0 until 9).fold(LinkedList<Long>()) { list, index ->
