@@ -21,4 +21,5 @@ tasks {
 dependencies {
     implementation("io.arrow-kt:arrow-core:1.0.1")
     implementation("io.kotest:kotest-assertions-core:4.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-RC")
 }

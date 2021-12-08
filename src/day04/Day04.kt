@@ -22,16 +22,16 @@ fun main() {
     println(part2(input))
 }
 
-fun selectWinner(input: List<String>, selector: Sequence<Winner>.() -> Winner): Int {
+private fun selectWinner(input: List<String>, selector: Sequence<Winner>.() -> Winner): Int {
     return parse(input)
         .let(computeWinnerSequence)
         .selector()
         .let(encryptSolution)
 }
 
-fun parse(input: List<String>) = parseGrids(input) to parseIntSequence(input)
+private fun parse(input: List<String>) = parseGrids(input) to parseIntSequence(input)
 
-val computeWinnerSequence: (Pair<List<Grid>, Sequence<Int>>) -> Sequence<Winner> = { (grids, numberSequence) ->
+private val computeWinnerSequence: (Pair<List<Grid>, Sequence<Int>>) -> Sequence<Winner> = { (grids, numberSequence) ->
     sequence {
         val gridsToMarks = grids.map {
             it to Marks(MutableList(5) { 0 }, MutableList(5) { 0 })
@@ -62,7 +62,7 @@ val encryptSolution: (Winner) -> Int = { (winner, winningNumber) ->
         .times(winningNumber)
 }
 
-fun parseGrids(input: List<String>): List<Grid> {
+private fun parseGrids(input: List<String>): List<Grid> {
     return input.asSequence()
         .drop(2)
         .filter { it.isNotBlank() }
@@ -79,12 +79,12 @@ fun parseGrids(input: List<String>): List<Grid> {
 
 val numberRegex = "\\d+".toRegex()
 
-fun Pair<Grid, Marks>.mark(index: Int) = Pair(
+private fun Pair<Grid, Marks>.mark(index: Int) = Pair(
     first.toMutableList().apply { this[index] = null },
     second.incrementedAt(index / 5, index % 5)
 )
 
-data class Marks(
+private data class Marks(
     val marksInRows: List<Int>,
     val marksInColumns: List<Int>,
 ) {
