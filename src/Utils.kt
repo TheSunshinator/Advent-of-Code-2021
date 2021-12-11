@@ -17,6 +17,15 @@ inline fun <T, U, V> Pair<T, U>.mapSecond(transform: (U) -> V) = first to transf
 
 data class Point(val x: Int, val y: Int)
 
+operator fun <T> List<List<T>>.get(p: Point) = this[p.x][p.y]
+operator fun <T> List<MutableList<T>>.set(p: Point, value: T) {
+    this[p.x][p.y] = value
+}
+
 infix fun Int.iterateTo(other: Int) = if (this <= other) rangeTo(other) else downTo(other)
 
 fun parseIntSequence(input: List<String>) = input.first().splitToSequence(",").map(String::toInt)
+
+fun <T> List<List<T>>.coordinates() = indices.asSequence().flatMap { i -> this[i].indices.map { j -> Point(i, j) } }
+
+fun Char.digitToInt() = code - '0'.code
