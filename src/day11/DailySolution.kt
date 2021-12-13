@@ -1,6 +1,7 @@
 package day11
 
 import Point
+import cartesianProduct
 import coordinates
 import digitToInt
 import get
@@ -47,7 +48,6 @@ fun List<MutableList<Int>>.flashAt(p: Point): Long {
 }
 
 infix fun Int.`±`(margin: Int) = (this - margin)..(this + margin)
-infix fun IntRange.cartesianProduct(other: IntRange) = asSequence().flatMap { i -> other.map { j -> Point(i, j) } }
 infix fun Point.isInGrid(grid: List<List<*>>) = x in grid.indices && y in grid[x].indices
 
 fun List<MutableList<Int>>.resetHighEnergy() {

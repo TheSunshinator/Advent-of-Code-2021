@@ -27,5 +27,7 @@ infix fun Int.iterateTo(other: Int) = if (this <= other) rangeTo(other) else dow
 fun parseIntSequence(input: List<String>) = input.first().splitToSequence(",").map(String::toInt)
 
 fun <T> List<List<T>>.coordinates() = indices.asSequence().flatMap { i -> this[i].indices.map { j -> Point(i, j) } }
+infix fun IntRange.cartesianProduct(other: IntRange) = asSequence().flatMap { i -> other.map { j -> Point(i, j) } }
 
 fun Char.digitToInt() = code - '0'.code
+
