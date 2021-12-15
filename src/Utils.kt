@@ -15,7 +15,20 @@ fun String.md5(): String = BigInteger(1, MessageDigest.getInstance("MD5").digest
 inline fun <T, U, V> Pair<T, U>.mapFirst(transform: (T) -> V) = transform(first) to second
 inline fun <T, U, V> Pair<T, U>.mapSecond(transform: (U) -> V) = first to transform(second)
 
-data class Point(val x: Int, val y: Int)
+data class Point(val x: Int, val y: Int) {
+    fun neighbors(includeDiagonal: Boolean = false) = sequence {
+        yield(Point(x - 1, y))
+        yield(Point(x + 1, y))
+        yield(Point(x, y - 1))
+        yield(Point(x, y + 1))
+        if (includeDiagonal) {
+            yield(Point(x - 1, y - 1))
+            yield(Point(x - 1, y + 1))
+            yield(Point(x + 1, y + 1))
+            yield(Point(x + 1, y - 1))
+        }
+    }
+}
 
 operator fun <T> List<List<T>>.get(p: Point) = this[p.x][p.y]
 operator fun <T> List<MutableList<T>>.set(p: Point, value: T) {
