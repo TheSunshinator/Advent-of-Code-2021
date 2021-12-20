@@ -41,6 +41,3 @@ fun parseIntSequence(input: List<String>) = input.first().splitToSequence(",").m
 
 fun <T> List<List<T>>.coordinates() = indices.asSequence().flatMap { i -> this[i].indices.map { j -> Point(i, j) } }
 infix fun IntRange.cartesianProduct(other: IntRange) = asSequence().flatMap { i -> other.map { j -> Point(i, j) } }
-
-fun Char.digitToInt() = code - '0'.code
-

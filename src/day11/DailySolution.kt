@@ -3,7 +3,6 @@ package day11
 import Point
 import cartesianProduct
 import coordinates
-import digitToInt
 import get
 import io.kotest.matchers.shouldBe
 import readInput

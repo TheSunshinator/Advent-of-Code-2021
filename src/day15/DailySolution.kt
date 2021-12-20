@@ -2,7 +2,6 @@ package day15
 
 import Point
 import coordinates
-import digitToInt
 import io.kotest.matchers.shouldBe
 import readInput
 import get
