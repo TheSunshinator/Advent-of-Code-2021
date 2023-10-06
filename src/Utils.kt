@@ -41,6 +41,8 @@ fun <T> List<List<T>>.getOrElse(p: Point, defaultValue: (Point) -> T) : T {
     else defaultValue(p)
 }
 
+data class Point3D(val x: Int, val y: Int, val z: Int)
+
 infix fun Int.iterateTo(other: Int) = if (this <= other) rangeTo(other) else downTo(other)
 
 fun parseIntSequence(input: List<String>) = input.first().splitToSequence(",").map(String::toInt)
